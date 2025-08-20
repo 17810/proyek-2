@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>H&R Dental • drg. Rahmat Risnandar & drg. Hanum Lufianti</title>
+<meta name="description" content="H&R Dental • 15 Years Experience • We treat you like our family • Affordable Price. Perawatan gigi estetik & keluarga di Karawang Timur.">
+<style>
+  /* ===== Design Tokens: violet • tosca • sky blue ===== */
+  :root{
+    --violet:#7c3aed; --tosca:#14b8a6; --sky:#38bdf8;
+    --ink:#e6edf6; --muted:#a7b4c7; --bg:#0b1220; --card:#0f172a; --rail:#0b152e;
+    --ring:rgba(56,189,248,.25); --max:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font-family:system-ui, Segoe UI, Roboto, Arial, sans-serif; color:var(--ink);
+    background:
+      radial-gradient(70vmax 60vmax at 12% -10%, rgba(124,58,237,.22), transparent 60%),
+      radial-gradient(70vmax 60vmax at 100% 6%, rgba(20,184,166,.18), transparent 55%),
+      radial-gradient(70vmax 60vmax at 50% 120%, rgba(56,189,248,.18), transparent 55%),
+      var(--bg);
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+  /* ===== Nav ===== */
+  .nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:rgba(11,18,32,.55);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav .row{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+  .brand{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.3px}
+  .brand img{height:38px;width:auto;border-radius:6px;object-fit:contain;background:#fff;padding:2px}
+  .menu{display:flex;gap:16px}
+  .menu a{padding:8px 10px;border-radius:10px;opacity:.9;font-weight:600}
+  .menu a:hover{opacity:1;background:rgba(255,255,255,.07)}
+  #navt{display:none}.hamb{display:none;cursor:pointer}
+  @media (max-width:900px){
+    .hamb{display:block}
+    .menu{
+      position:fixed;inset:64px 14px auto 14px;display:grid;gap:10px;padding:12px;
+      background:rgba(15,23,42,.92);border:1px solid rgba(255,255,255,.08);border-radius:14px;
+      transform:translateY(-20px);opacity:0;pointer-events:none;transition:.2s ease;
+    }
+    #navt:checked ~ .wrap .menu{transform:none;opacity:1;pointer-events:auto}
+  }
+
+  /* ===== Hero ===== */
+  header.hero{padding:28px 0}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:stretch}
+  @media (max-width:980px){ .hero-grid{grid-template-columns:1fr} }
+  .glass{
+    background:linear-gradient(180deg,var(--card),var(--card)) padding-box,
+               linear-gradient(135deg,rgba(20,184,166,.35),rgba(124,58,237,.35)) border-box;
+    border:1px solid transparent;border-radius:16px;padding:18px;box-shadow:0 22px 70px rgba(0,0,0,.45)
+  }
+  .headline{font-size:clamp(28px,5vw,56px);line-height:1.08;margin:0 0 10px;
+    background:linear-gradient(135deg,var(--sky),var(--violet) 50%,var(--tosca));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{color:var(--muted);margin:0 0 14px}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 10px}
+  .badge{display:inline-block;font-size:.78rem;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:#0b1528}
+  .cta{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:#0f1b33;font-weight:800}
+  .btn.primary{background:linear-gradient(135deg,var(--sky),var(--violet));border-color:transparent;color:#071224}
+  .hero-img{aspect-ratio:16/10;border-radius:12px;overflow:hidden}
+  .note{font-size:.9rem;color:var(--muted);margin-top:8px}
+
+  /* ===== Sections ===== */
+  section{padding:34px 0}
+  .sec-title{display:flex;align-items:center;gap:10px;margin:0 0 16px}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--sky);box-shadow:0 0 0 6px rgba(56,189,248,.18)}
+  .muted{color:var(--muted)}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:900px){ .cards{grid-template-columns:1fr 1fr} }
+  @media (max-width:620px){ .cards{grid-template-columns:1fr} }
+  .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px}
+  .icon{width:44px;height:44px;border-radius:12px;margin-bottom:8px;
+    background:linear-gradient(135deg,var(--violet),var(--sky));display:grid;place-items:center;font-weight:900}
+
+  /* ===== Doctors ===== */
+  .docs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:900px){ .docs{grid-template-columns:1fr} }
+  .doc{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center}
+  @media (max-width:540px){ .doc{grid-template-columns:1fr} }
+  .avatar{width:110px;height:110px;border-radius:14px;object-fit:cover;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 30px rgba(56,189,248,.25)}
+  .pill{display:inline-block;font-size:.75rem;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.12);margin-top:6px}
+
+  /* ===== Testimonials (grid + lightbox) ===== */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:880px){ .grid{grid-template-columns:1fr 1fr} }
+  @media (max-width:560px){ .grid{grid-template-columns:1fr} }
+  .tile{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
+  .tile img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+  .tile:hover img{transform:scale(1.04)}
+  .tile a{position:absolute;inset:0}
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px}
+  .lightbox img{max-width:min(1100px,92vw);max-height:80vh;border-radius:12px}
+  .lightbox:target{display:flex}
+  .close{position:fixed;top:18px;right:18px;background:#0a1326;border:1px solid rgba(255,255,255,.1);
+    border-radius:10px;padding:10px 12px;color:var(--ink)}
+
+  /* ===== Price ===== */
+  .price{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:900px){ .price{grid-template-columns:1fr} }
+  .bigprice{font-size:30px;font-weight:900;margin:6px 0}
+
+  /* ===== Footer ===== */
+  footer{border-top:1px solid rgba(255,255,255,.06);padding:18px 0;color:var(--muted);text-align:center}
+
+  /* ===== Small animations */
+  @keyframes fadeUp { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+  .glass, .card, .tile { animation: fadeUp .5s ease both }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <input type="checkbox" id="navt">
+    <div class="wrap row">
+      <div class="brand">
+        <!-- Pastikan file logo ada dengan nama berikut -->
+        <img src="logo.png" alt="Logo H&R Dental">
+        <span>H&amp;R Dental</span>
+      </div>
+      <label class="hamb" for="navt">☰ Menu</label>
+      <div class="menu">
+        <a href="#layanan">Layanan</a>
+        <a href="#dokter">Dokter</a>
+        <a href="#testi">Testimonial</a>
+        <a href="#harga">Harga</a>
+        <a href="#booking">Booking</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div class="glass">
+        <div class="badges">
+          <span class="badge">15 Years Experience</span>
+          <span class="badge">We treat you like our family</span>
+          <span class="badge">Affordable Price</span>
+        </div>
+        <h1 class="headline">Senyum Sehat & Percaya Diri<br>untuk Seluruh Keluarga.</h1>
+        <p class="lead">
+          Ditangani oleh <b>drg. Rahmat Risnandar</b> & <b>drg. Hanum Lufianti</b>. Fokus konservasi & estetik gigi
+          dengan suasana klinik yang nyaman dan ramah anak.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://wa.me/6281287946595" target="_blank" rel="noopener">Chat WhatsApp</a>
+          <a class="btn" href="#booking">Buat Janji</a>
+        </div>
+      </div>
+      <div class="glass">
+        <!-- Foto klinik -->
+        <div class="hero-img">
+          <img src="praktekan1.png" alt="Ruang praktik H&R Dental">
+        </div>
+        <p class="note">Peralatan steril, ruang ceria ramah anak, dan edukasi kesehatan gigi yang menyenangkan.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- LAYANAN -->
+    <section id="layanan">
+      <div class="sec-title"><span class="dot"></span><h2>Layanan Utama</h2></div>
+      <div class="cards">
+        <article class="card"><div class="icon">🦷</div><h3>Scaling & Polishing</h3><p class="muted">Membersihkan karang gigi & noda untuk senyum lebih cerah.</p></article>
+        <article class="card"><div class="icon" style="background:linear-gradient(135deg,var(--tosca),var(--sky))">😁</div><h3>Estetik (Veneer/Whitening)</h3><p class="muted">Warna & bentuk gigi lebih proporsional dan natural.</p></article>
+        <article class="card"><div class="icon" style="background:linear-gradient(135deg,var(--violet),var(--tosca))">🪥</div><h3>Tambal & Perawatan Syaraf</h3><p class="muted">Konservasi gigi berlubang dengan pendekatan minimal invasif.</p></article>
+      </div>
+    </section>
+
+    <!-- DOKTER -->
+    <section id="dokter">
+      <div class="sec-title"><span class="dot"></span><h2>Profil Dokter</h2></div>
+      <div class="docs">
+        <article class="card doc">
+          <img class="avatar" src="dock.png" alt="drg. Rahmat & drg. Hanum (APD)">
+          <div>
+            <h3>drg. Rahmat Risnandar & drg. Hanum Lufianti</h3>
+            <p class="muted">Tim suami-istri berpengalaman, teliti, komunikatif, dan ramah anak.</p>
+            <span class="pill">Contact Me: <b>0812-8794-6595</b></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (pakai 3 foto before–after) -->
+    <section id="testi">
+      <div class="sec-title"><span class="dot"></span><h2>Testimonial Pasien</h2></div>
+      <p class="muted" style="margin-bottom:10px">Hasil nyata dari pasien kami—klik gambar untuk lihat lebih jelas.</p>
+      <div class="grid">
+        <figure class="tile"><img src="gigi.jpg" alt="Progress behel"><a href="#t1" aria-label="buka"></a></figure>
+        <figure class="tile"><img src="gigi2.jpg" alt="Whitening before after"><a href="#t2" aria-label="buka"></a></figure>
+        <figure class="tile"><img src="gigi3.jpg" alt="Gigi palsu flexy A2"><a href="#t3" aria-label="buka"></a></figure>
+      </div>
+      <!-- Lightbox -->
+      <div id="t1" class="lightbox"><a class="close" href="#">Tutup ✕</a><img src="gigi.jpg" alt="Progress behel detail"></div>
+      <div id="t2" class="lightbox"><a class="close" href="#">Tutup ✕</a><img src="gigi2.jpg" alt="Whitening detail"></div>
+      <div id="t3" class="lightbox"><a class="close" href="#">Tutup ✕</a><img src="gigi3.jpg" alt="Gigi palsu detail"></div>
+    </section>
+
+    <!-- HARGA RINGKAS -->
+    <section id="harga">
+      <div class="sec-title"><span class="dot"></span><h2>Daftar Harga Ringkas</h2></div>
+      <div class="price">
+        <article class="card"><h3>Scaling</h3><div class="bigprice">Rp 250K – 450K</div><p class="muted">Termasuk polishing & edukasi kebersihan.</p></article>
+        <article class="card"><h3>Tambal Komposit</h3><div class="bigprice">Rp 200K – 500K</div><p class="muted">Bergantung jumlah permukaan & kedalaman.</p></article>
+        <article class="card"><h3>Whitening</h3><div class="bigprice">Rp 1.5jt – 2.5jt</div><p class="muted">In-office dengan panduan dokter.</p></article>
+      </div>
+      <p class="muted" style="margin-top:8px">*Harga dapat berubah sesuai kondisi klinis. Konsultasi dulu untuk estimasi akurat.</p>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="booking">
+      <div class="sec-title"><span class="dot"></span><h2>Booking Janji Temu</h2></div>
+      <div class="card">
+        <form onsubmit="alert('Terima kasih! Admin kami akan menghubungi via WhatsApp untuk konfirmasi.'); return false;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input placeholder="Nama lengkap" required>
+            <input type="tel" placeholder="No. WhatsApp" required>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input type="date" required>
+            <select required>
+              <option value="">Pilih layanan…</option>
+              <option>Scaling</option><option>Tambal</option><option>Whitening</option><option>Konsultasi</option>
+            </select>
+          </div>
+          <textarea rows="4" placeholder="Keluhan/riwayat singkat (opsional)"></textarea>
+          <div style="display:flex;gap:10px;justify-content:flex-end">
+            <button class="btn" type="reset">Reset</button>
+            <button class="btn primary" type="submit">Kirim Permintaan</button>
+          </div>
+          <p class="note">Atau cepatnya, klik tombol berikut: <a class="btn" href="https://wa.me/6281287946595" target="_blank" rel="noopener">WhatsApp 0812-8794-6595</a></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- KONTAK / LOKASI -->
+    <section id="kontak">
+      <div class="sec-title"><span class="dot"></span><h2>Kontak & Lokasi</h2></div>
+      <div class="cards">
+        <div class="card">
+          <h3>Alamat</h3>
+          <p class="muted">
+            Perum Sari Indah Permai, Blok A No. 01,<br>
+            Karawang Timur, Kec. Palumbonsari
+          </p>
+          <p class="muted">Telp/WA: <b>0812-8794-6595</b></p>
+          <div class="badges" style="margin-top:8px">
+            <span class="badge">15 Years Experience</span>
+            <span class="badge">We treat you like our family</span>
+            <span class="badge">Affordable Price</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Peta</h3>
+          <div style="aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+            <!-- Ganti src di bawah dengan embed Google Maps alamat tepat -->
+            <iframe title="Map" width="100%" height="100%" style="border:0" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d997.0!2d107.0!3d-6.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v0000"></iframe>
+          </div>
+          <p class="note">Klik marker untuk rute tercepat.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 H&R Dental – drg. Rahmat Risnandar & drg. Hanum Lufianti. All rights reserved.</footer>
+</body>
+</html>
